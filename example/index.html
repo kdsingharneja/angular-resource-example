@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS test</title>
+
+  <link rel="stylesheet" type="text/css" href="../bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+
+</head>
+<body>
+  <div ng-controller="MainCtrl">
+    <div class="container">
+      <h3 ng-if="!editing">New Comment</h3>
+      <h3 ng-if="editing">Edit Comment</h3>
+      <form ng-submit="save(comment)">
+        <input ng-model="comment.title">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+        <button ng-if="editing" class="btn btn-success" ng-click="newComment()">New Comment</button>
+      <h1 ng-show="comments.length">Comments</h1>
+      <table class="table table-striped" ng-show="comments.length">
+        <thead>
+          <th>Title</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="comment in comments">
+          <td ng-click="activeComment(comment)">{{comment.title}}</td>
+          <td><button class="btn btn-danger" ng-click="delete(comment)">Delete</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="../angular/angular.min.js"></script>
+  <script src="../angular-resource/angular-resource.min.js"></script>
+  <script src="../angular-route/angular-route.min.js"></script>
+
+  <script src="../lodash/lodash.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/models/comment.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+</body>
+</html>
